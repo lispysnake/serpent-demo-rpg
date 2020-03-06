@@ -8,7 +8,7 @@
 	"name": "serpent-demo-rpg",
 	"dependencies": {
 		"serpent": {
-			"path": "external/serpent",
+			"path": "serpent",
 		},
 	},
 	"buildTypes": {
