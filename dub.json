@@ -6,6 +6,11 @@
 	"description": "Serpent Demo (RPG Theme)",
 	"license": "ZLib",
 	"name": "serpent-demo-rpg",
+	"dependencies": {
+		"serpent": {
+			"path": "external/serpent",
+		},
+	},
 	"buildTypes": {
 		"debug": {
 			"buildOptions": ["debugMode", "optimize"],

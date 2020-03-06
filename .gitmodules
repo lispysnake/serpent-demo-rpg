@@ -1,0 +1,3 @@
+[submodule "external/serpent"]
+	path = external/serpent
+	url = https://github.com/lispysnake/serpent.git
