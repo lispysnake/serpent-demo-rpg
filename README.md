@@ -19,5 +19,5 @@ Make sure you have all modules cloned recursively:
 
 Now run:
 
-    ./build.sh release
+    ./scripts/build.sh release
 
