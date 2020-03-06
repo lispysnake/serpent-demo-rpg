@@ -20,9 +20,16 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-import std.stdio;
+import serpent;
 
+/* Simple no-op app */
+class MyApp : serpent.App
+{
+}
+
+/* Main entry */
 void main()
 {
-	writeln("Make Me Awesome");
+    auto context = new serpent.Context();
+    context.run(new MyApp);
 }
