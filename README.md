@@ -17,7 +17,9 @@ Make sure you have all modules cloned recursively:
 
     git submodule update --init --recursive
 
-Now run:
+## Running
 
-    ./scripts/build.sh release
+You'll need the shared libraries accessible when running a development
+build of serpent, or alternatively use `serpent-support`:
 
+    LD_LIBRARY_PATH=../serpent-support/runtime/lib ./serpent
