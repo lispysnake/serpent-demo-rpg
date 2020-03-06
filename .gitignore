@@ -1,0 +1,18 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/serpent-demo-rpg
+serpent-demo-rpg.so
+serpent-demo-rpg.dylib
+serpent-demo-rpg.dll
+serpent-demo-rpg.a
+serpent-demo-rpg.lib
+serpent-demo-rpg-test-*
+*.exe
+*.o
+*.obj
+*.lst
+
+# Caused by autoformat
+*.d.orig
