@@ -25,6 +25,12 @@ import serpent;
 /* Simple no-op app */
 class MyApp : serpent.App
 {
+
+    final override bool bootstrap(View!ReadWrite view)
+    {
+        auto sprite = view.createEntity();
+        return true;
+    }
 }
 
 /* Main entry */
