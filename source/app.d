@@ -21,14 +21,28 @@
  */
 
 import serpent;
+import serpent.graphics.sprite;
+import serpent.tiled;
 
 /* Simple no-op app */
 class MyApp : serpent.App
 {
 
+    Scene scene;
+
     final override bool bootstrap(View!ReadWrite view)
     {
-        auto sprite = view.createEntity();
+        scene = new Scene("default");
+        context.display.addScene(scene);
+        scene.addCamera(new OrthographicCamera());
+
+        auto mapView = view.createEntity();
+        auto mapComponent = MapComponent();
+        auto transform = TransformComponent();
+        mapComponent.map = TMXParser.loadTMX(
+                "assets/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx");
+        view.addComponent(mapView, mapComponent);
+        view.addComponent(mapView, transform);
         return true;
     }
 }
@@ -39,9 +53,17 @@ void main()
     auto context = new serpent.Context();
     context.display.pipeline.debugMode = true;
     context.display.pipeline.driverType = DriverType.OpenGL;
-    auto sc = new Scene("default");
-    auto cm = new OrthographicCamera();
-    context.display.addScene(sc);
-    sc.addCamera(cm);
+
+    /* TODO: Remove need for us registering a component! */
+    context.entity.registerComponent!MapComponent;
+    context.entity.registerComponent!SpriteComponent;
+
+    /* TODO: Remove need for casts! */
+    import serpent.graphics.pipeline.bgfx;
+
+    auto pipe = cast(BgfxPipeline) context.display.pipeline;
+    pipe.addRenderer(new MapRenderer());
+    pipe.addRenderer(new SpriteRenderer());
+
     context.run(new MyApp);
 }
