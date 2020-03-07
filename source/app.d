@@ -31,5 +31,11 @@ class MyApp : serpent.App
 void main()
 {
     auto context = new serpent.Context();
+    context.display.pipeline.debugMode = true;
+    context.display.pipeline.driverType = DriverType.OpenGL;
+    auto sc = new Scene("default");
+    auto cm = new OrthographicCamera();
+    context.display.addScene(sc);
+    sc.addCamera(cm);
     context.run(new MyApp);
 }
