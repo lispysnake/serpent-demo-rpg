@@ -40,6 +40,7 @@ class MyApp : serpent.App
         scene = new Scene("default");
         context.display.addScene(scene);
         scene.addCamera(new OrthographicCamera());
+        scene.camera.position(vec3f(0.0f, 400.0f, 0.0f));
 
         context.input.keyReleased.connect(&keyReleased);
 
