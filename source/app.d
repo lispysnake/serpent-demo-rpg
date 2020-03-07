@@ -63,10 +63,6 @@ void main()
     context.display.logicalSize(960, 540);
     context.display.title = "#serpent RPG Demo";
 
-    /* TODO: Remove need for us registering a component! */
-    context.entity.registerComponent!MapComponent;
-    context.entity.registerComponent!SpriteComponent;
-
     /* TODO: Remove need for casts! */
     import serpent.graphics.pipeline.bgfx;
 
