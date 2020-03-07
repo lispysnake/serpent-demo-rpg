@@ -53,6 +53,9 @@ void main()
     auto context = new serpent.Context();
     context.display.pipeline.debugMode = true;
     context.display.pipeline.driverType = DriverType.OpenGL;
+    context.display.size(1366, 768);
+    context.display.logicalSize(960, 540);
+    context.display.title = "#serpent RPG Demo";
 
     /* TODO: Remove need for us registering a component! */
     context.entity.registerComponent!MapComponent;
