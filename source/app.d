@@ -30,11 +30,18 @@ class MyApp : serpent.App
 
     Scene scene;
 
+    final void keyReleased(KeyboardEvent e)
+    {
+        context.quit();
+    }
+
     final override bool bootstrap(View!ReadWrite view)
     {
         scene = new Scene("default");
         context.display.addScene(scene);
         scene.addCamera(new OrthographicCamera());
+
+        context.input.keyReleased.connect(&keyReleased);
 
         auto mapView = view.createEntity();
         auto mapComponent = MapComponent();
