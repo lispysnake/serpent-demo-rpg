@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.4" name="[A]Water_pipo" tilewidth="32" tileheight="32" tilecount="3072" columns="64">
+<tileset version="1.2" tiledversion="1.2.1" name="[A]Water_pipo" tilewidth="32" tileheight="32" tilecount="3072" columns="64">
  <image source="[A]Water_pipo.png" width="2048" height="1536"/>
  <terraintypes>
   <terrain name="water1" tile="70"/>
