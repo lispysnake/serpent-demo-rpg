@@ -61,6 +61,7 @@ void main()
     context.display.pipeline.driverType = DriverType.Vulkan;
     context.display.size(1366, 768);
     context.display.logicalSize(960, 540);
+    context.display.fullscreen = true;
     context.display.title = "#serpent RPG Demo";
 
     /* TODO: Remove need for casts! */
