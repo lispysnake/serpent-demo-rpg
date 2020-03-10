@@ -6,6 +6,7 @@
 	"description": "Serpent Demo (RPG Theme)",
 	"license": "ZLib",
 	"name": "serpent-demo-rpg",
+	"targetPath": "bin",
 	"dependencies": {
 		"serpent": {
 			"path": "serpent",
