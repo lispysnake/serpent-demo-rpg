@@ -24,6 +24,8 @@ import serpent;
 import serpent.graphics.sprite;
 import serpent.tiled;
 
+import std.path : buildPath;
+
 /* Simple no-op app */
 class MyApp : serpent.App
 {
@@ -47,8 +49,8 @@ class MyApp : serpent.App
         auto mapView = view.createEntity();
         auto mapComponent = MapComponent();
         auto transform = TransformComponent();
-        mapComponent.map = TMXParser.loadTMX(
-                "assets/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx");
+        auto tmxPath = buildPath("assets", "Pipoya RPG Tileset 32x32", "SampleMap", "samplemap.tmx");
+        mapComponent.map = TMXParser.loadTMX(tmxPath);
         view.addComponent(mapView, mapComponent);
         view.addComponent(mapView, transform);
         return true;
