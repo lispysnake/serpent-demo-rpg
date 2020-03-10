@@ -49,7 +49,8 @@ class MyApp : serpent.App
         auto mapView = view.createEntity();
         auto mapComponent = MapComponent();
         auto transform = TransformComponent();
-        auto tmxPath = buildPath("assets", "Pipoya RPG Tileset 32x32", "SampleMap", "samplemap.tmx");
+        auto tmxPath = buildPath("assets", "Pipoya RPG Tileset 32x32",
+                "SampleMap", "samplemap.tmx");
         mapComponent.map = TMXParser.loadTMX(tmxPath);
         view.addComponent(mapView, mapComponent);
         view.addComponent(mapView, transform);
