@@ -11,6 +11,9 @@
 		"serpent": {
 			"path": "serpent",
 		},
+		"serpent-tiled": {
+			"path": "serpent-tiled",
+		},
 	},
 	"buildTypes": {
 		"debug": {

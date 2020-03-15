@@ -1,3 +1,6 @@
 [submodule "external/serpent"]
 	path = serpent
 	url = https://github.com/lispysnake/serpent.git
+[submodule "serpent-tiled"]
+	path = serpent-tiled
+	url = https://github.com/lispysnake/serpent-tiled.git
