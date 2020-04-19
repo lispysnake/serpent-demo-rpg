@@ -25,6 +25,8 @@ import serpent.graphics.sprite;
 import serpent.tiled;
 
 import std.path : buildPath;
+import std.getopt;
+import std.stdio;
 
 /* Simple no-op app */
 class MyApp : serpent.App
@@ -72,14 +74,66 @@ class MyApp : serpent.App
 }
 
 /* Main entry */
-void main()
+int main(string[] args)
 {
-    auto context = new serpent.Context();
-    context.display.pipeline.driverType = DriverType.Vulkan;
-    context.display.size(1366, 768);
+    bool vulkan = false;
+    bool fullscreen = false;
+    bool debugMode = false;
+    bool disableVsync = false;
+    auto argp = getopt(args, std.getopt.config.bundling, "v|vulkan",
+            "Use Vulkan instead of OpenGL", &vulkan, "f|fullscreen",
+            "Start in fullscreen mode", &fullscreen, "d|debug", "Enable debug mode",
+            &debugMode, "n|no-vsync", "Disable VSync", &disableVsync);
+
+    if (argp.helpWanted)
+    {
+        defaultGetoptPrinter("serpent demonstration\n", argp.options);
+        return 0;
+    }
+
+    /* Context is essential to *all* Serpent usage. */
+    auto context = new Context();
+    context.display.title("#serpent RPG demo").size(1366, 768);
     context.display.logicalSize(960, 540);
-    context.display.fullscreen = true;
-    context.display.title = "#serpent RPG Demo";
+    context.display.backgroundColor = 0x0f;
+
+    if (vulkan)
+    {
+        context.display.title = context.display.title ~ " [Vulkan]";
+    }
+    else
+    {
+        context.display.title = context.display.title ~ " [OpenGL]";
+    }
+
+    /* We want OpenGL or Vulkan? */
+    if (vulkan)
+    {
+        writeln("Requesting Vulkan display mode");
+        context.display.pipeline.driverType = DriverType.Vulkan;
+    }
+    else
+    {
+        writeln("Requesting OpenGL display mode");
+        context.display.pipeline.driverType = DriverType.OpenGL;
+    }
+
+    if (fullscreen)
+    {
+        writeln("Starting in fullscreen mode");
+        context.display.fullscreen = true;
+    }
+
+    if (debugMode)
+    {
+        writeln("Starting in debug mode");
+        context.display.pipeline.debugMode = true;
+    }
+
+    if (disableVsync)
+    {
+        writeln("Disabling vsync");
+    }
 
     /* TODO: Remove need for casts! */
     import serpent.graphics.pipeline.bgfx;
@@ -88,5 +142,5 @@ void main()
     pipe.addRenderer(new MapRenderer());
     pipe.addRenderer(new SpriteRenderer());
 
-    context.run(new MyApp);
+    return context.run(new MyApp);
 }
