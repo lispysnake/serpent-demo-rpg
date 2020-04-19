@@ -28,6 +28,8 @@ import std.path : buildPath;
 import std.getopt;
 import std.stdio;
 
+import bindbc.sdl;
+
 /* Simple no-op app */
 class MyApp : serpent.App
 {
@@ -36,9 +38,22 @@ class MyApp : serpent.App
     box2f viewBounds;
     box2f worldBounds;
 
-    final void keyReleased(KeyboardEvent e)
+    final void keyReleased(KeyboardEvent e) @system
     {
-        context.quit();
+        switch (e.scancode())
+        {
+        case SDL_SCANCODE_F:
+            context.display.fullscreen = !context.display.fullscreen;
+            break;
+        case SDL_SCANCODE_Q:
+            context.quit();
+            break;
+        case SDL_SCANCODE_D:
+            context.display.pipeline.debugMode = !context.display.pipeline.debugMode;
+            break;
+        default:
+            break;
+        }
     }
 
     final void mouseMoved(MouseEvent e)
