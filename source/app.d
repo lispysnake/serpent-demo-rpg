@@ -31,10 +31,18 @@ class MyApp : serpent.App
 {
 
     Scene scene;
+    box2f viewBounds;
+    box2f worldBounds;
 
     final void keyReleased(KeyboardEvent e)
     {
         context.quit();
+    }
+
+    final void mouseMoved(MouseEvent e)
+    {
+        scene.camera.position = vec3f(e.x, e.y, 0.0f);
+        scene.camera.clamp(worldBounds, viewBounds);
     }
 
     final override bool bootstrap(View!ReadWrite view)
@@ -45,6 +53,7 @@ class MyApp : serpent.App
         scene.camera.position(vec3f(0.0f, 400.0f, 0.0f));
 
         context.input.keyReleased.connect(&keyReleased);
+        context.input.mouseMoved.connect(&mouseMoved);
 
         auto mapView = view.createEntity();
         auto mapComponent = MapComponent();
@@ -54,6 +63,10 @@ class MyApp : serpent.App
         mapComponent.map = TMXParser.loadTMX(tmxPath);
         view.addComponent(mapView, mapComponent);
         view.addComponent(mapView, transform);
+
+        viewBounds = rectanglef(0.0f, 0.0f, 1366.0f, 768.0f);
+        worldBounds = rectanglef(0.0f, 0.0f, mapComponent.map.tileWidth * mapComponent.map.width,
+                mapComponent.map.tileHeight * mapComponent.map.height);
         return true;
     }
 }
